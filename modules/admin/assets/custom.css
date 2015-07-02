@@ -1,0 +1,6 @@
+#main-container > header.navbar.navbar-default{
+	border-radius: 0!important;
+}
+.unactive{
+	display: inline-block;
+}

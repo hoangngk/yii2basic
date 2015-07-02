@@ -1,0 +1,85 @@
+/** TOAN NGUYEN **/
+.form-control {
+	border: 1px solid #e0e0e0;
+	padding: 5px;
+}
+.kv-panel-before .btn-success,  .kv-panel-before .btn-warning, .kv-panel-before .btn-danger {
+	margin: 10px;
+	margin-left: 0px;
+}
+.container h1 {
+	font-size: 15px;
+	color: #777;
+	margin: 0;
+	font-weight: 400;
+	text-transform: uppercase;
+	margin-bottom: 15px;
+}
+.auth-item-view form {
+	margin-bottom: 20px;
+}
+.btn-icon {
+	border-radius: 50%;
+	width: 40px;
+	height: 40px;
+	padding: 0;
+	text-align: center;
+	position: relative;
+	background: #fff;
+	border: 1px solid #eee!important;
+	display: inline-block;
+	text-align: center;
+	box-shadow: none!important;
+}
+.btn-icon span {
+	color: #333;
+	font-size: 17px;
+	line-height: 40px;
+}
+.btn-icon:hover {
+	background: #fff;
+}
+.btn-icon span.glyphicon-eye-open {
+	font-size: 14px;
+  	line-height: 34px;
+}
+.sub-menu #userMenu li.active a {
+	color: #000!important;
+}
+.group-content {
+	padding: 20px 10px;
+	background: #fff;
+	overflow: hidden;
+}
+.btn-button a {
+	margin-top: 2px;
+}
+.kv-panel-before {
+	background: #fff;
+	padding: 10px;
+  	border-bottom: 1px solid #ddd;
+  	border-top: 1px solid #ddd;
+}
+.kv-panel-before p {
+	margin-bottom: 0;
+}
+.panel-default > .panel-heading {
+	border-color: transparent;
+}
+.fg-line .form-group {
+	margin: 0;
+}
+.fg-line .form-group .form-control {
+	border: 0;
+	border-bottom: 1px solid #e0e0e0;
+}
+/** VU DAO **/
+
+.unactive{
+	display: inline-block;
+}
+
+/** HOANGNGUYEN **/
+.kv-panel-before > .btn, .quick-tools-table .btn {
+	float: left;
+}
