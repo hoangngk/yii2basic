@@ -27,11 +27,6 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     const STATUS_INACTIVE = 0;
     const STATUS_ACTIVE   = 1;
     
-    const TYPE_SUPERADMIN = 0;
-    const TYPE_COMPANY_ADMIN = 1;
-    const TYPE_COMPANY_USER =2;
-    const TYPE_PERSON_USER = 3;
-
     public $fullname;
     public $repassword;
     /**
@@ -229,24 +224,6 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     public function getFullName() 
     {
         return $this->firstname . ' ' . $this->lastname;
-    }
-
-
-    public static function getRealName() 
-    {
-        $user = self::findOne(Yii::$app->user->id);
-        return $user->firstname . ' ' . $user->lastname;
-    }
-
-    public static function getAvatar()
-    {
-        $user = self::findOne(Yii::$app->user->id);
-        return $user->avatar;
-    }
-
-    public function getCompanyUsersInfo()
-    {
-        return $this->hasOne(CompanyUsersInfo::className(), ['users_id' => 'id']);
     }
 
 }
