@@ -6,8 +6,8 @@
 # http://code.google.com/p/sequel-pro/
 #
 # Host: localhost (MySQL 5.5.34)
-# Database: asoner
-# Generation Time: 2015-07-02 07:57:47 +0000
+# Database: yii2basic2
+# Generation Time: 2015-08-07 07:14:15 +0000
 # ************************************************************
 
 
@@ -38,10 +38,7 @@ LOCK TABLES `auth_assignment` WRITE;
 
 INSERT INTO `auth_assignment` (`item_name`, `user_id`, `created_at`)
 VALUES
-	('admin','1',1420343129),
-	('company admin','5',1435741678),
-	('company admin','6',1435741852),
-	('company user','4',1435741591);
+	('admin','1',1420343129);
 
 /*!40000 ALTER TABLE `auth_assignment` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -80,8 +77,6 @@ VALUES
 	('/qt-table/*',2,NULL,NULL,NULL,1435660237,1435660237),
 	('/site/*',2,NULL,NULL,NULL,1420368460,1420368460),
 	('admin',1,'user will have all permissions',NULL,NULL,1420342460,1420343097),
-	('company admin',1,'This is company admin who will has all permission in his company.',NULL,NULL,1435547323,1435547323),
-	('company user',1,'it\'s assigned to user who belongs the specified company',NULL,NULL,1435547442,1435547442),
 	('user',1,'This is normal user, he doesn\'t belong any company, as a personal',NULL,NULL,1420342422,1435547501);
 
 /*!40000 ALTER TABLE `auth_item` ENABLE KEYS */;
@@ -108,7 +103,6 @@ LOCK TABLES `auth_item_child` WRITE;
 INSERT INTO `auth_item_child` (`parent`, `child`)
 VALUES
 	('admin','/*'),
-	('company admin','/company/*'),
 	('user','/debug/*'),
 	('user','/gii/*'),
 	('user','/site/*');
@@ -130,88 +124,6 @@ CREATE TABLE `auth_rule` (
   PRIMARY KEY (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-
-
-# Dump of table companies
-# ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `companies`;
-
-CREATE TABLE `companies` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  `alias` varchar(255) NOT NULL,
-  `address1` varchar(255) DEFAULT NULL,
-  `address2` varchar(255) DEFAULT NULL,
-  `email` varchar(255) NOT NULL,
-  `fax` varchar(255) NOT NULL,
-  `phone` varchar(255) DEFAULT NULL,
-  `logo` varchar(255) DEFAULT NULL,
-  `status` smallint(6) DEFAULT '0',
-  `users_id` int(11) NOT NULL,
-  `created_at` datetime DEFAULT NULL,
-  `updated_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-LOCK TABLES `companies` WRITE;
-/*!40000 ALTER TABLE `companies` DISABLE KEYS */;
-
-INSERT INTO `companies` (`id`, `name`, `alias`, `address1`, `address2`, `email`, `fax`, `phone`, `logo`, `status`, `users_id`, `created_at`, `updated_at`)
-VALUES
-	(2,'aaaa','aaaa','aaa','jshfs','n.khanhhoang@gmail.com','123123','','nologo.jpg',1,1,'2015-06-30 12:01:17','2015-07-02 11:06:54'),
-	(3,'bbb','bbb','bbb','bb','adsf@gmail.com','','','nologo.jpg',1,1,'2015-07-01 14:51:34','2015-07-02 11:06:54');
-
-/*!40000 ALTER TABLE `companies` ENABLE KEYS */;
-UNLOCK TABLES;
-
-
-# Dump of table company_users_info
-# ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `company_users_info`;
-
-CREATE TABLE `company_users_info` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `account_type` varchar(255) DEFAULT NULL,
-  `cost` varchar(255) DEFAULT NULL,
-  `contract_type` smallint(6) DEFAULT NULL,
-  `term_start` datetime DEFAULT NULL,
-  `term_end` datetime DEFAULT NULL,
-  `status` smallint(6) DEFAULT NULL,
-  `users_id` int(11) DEFAULT NULL,
-  `created_at` datetime DEFAULT NULL,
-  `updated_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
-
-# Dump of table groups
-# ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `groups`;
-
-CREATE TABLE `groups` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  `alias` varchar(255) DEFAULT NULL,
-  `users_id` int(11) NOT NULL,
-  `created_at` datetime DEFAULT NULL,
-  `updated_at` datetime DEFAULT NULL,
-  `status` int(11) DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-LOCK TABLES `groups` WRITE;
-/*!40000 ALTER TABLE `groups` DISABLE KEYS */;
-
-INSERT INTO `groups` (`id`, `name`, `alias`, `users_id`, `created_at`, `updated_at`, `status`)
-VALUES
-	(2,'aaa','aaa',1,'2015-07-01 15:17:33','2015-07-01 15:26:57',1);
-
-/*!40000 ALTER TABLE `groups` ENABLE KEYS */;
-UNLOCK TABLES;
 
 
 # Dump of table menu
@@ -244,21 +156,6 @@ CREATE TABLE `migration` (
   PRIMARY KEY (`version`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-LOCK TABLES `migration` WRITE;
-/*!40000 ALTER TABLE `migration` DISABLE KEYS */;
-
-INSERT INTO `migration` (`version`, `apply_time`)
-VALUES
-	('m150625_070453_users',1435217742),
-	('m150629_025739_company',1435547022),
-	('m150630_075227_alias_filed_for_companies',1435651829),
-	('m150630_093012_create_groups_table',1435715457),
-	('m150701_080832_create_groups_table',1435738642),
-	('m150702_022155_create_company_users_infor_table',1435820255),
-	('m150702_065608_add_type_field_user',1435820584);
-
-/*!40000 ALTER TABLE `migration` ENABLE KEYS */;
-UNLOCK TABLES;
 
 
 # Dump of table users
@@ -290,8 +187,7 @@ LOCK TABLES `users` WRITE;
 INSERT INTO `users` (`id`, `username`, `firstname`, `lastname`, `email`, `password`, `token`, `avatar`, `auth_key`, `active`, `parent`, `type`, `created_at`, `updated_at`)
 VALUES
 	(1,'admin','admin','asoner','admin@asoner.com','$2y$13$djseGQlCMk1rHXoRs3gnPubMQ6N9Tl0iZMf3uMXyGyoRKlLtDg2gy','7YIHNfHE1kOzdWLLtp2kY3Itl7skRA9h',NULL,'mHAeudDuvFHan9XxJOZUfBjfNB6DnWNI',1,0,0,'2015-02-11 15:53:21','2015-07-02 14:30:12'),
-	(4,'companyuser','Company','User','companyuser@asoner.com','$2y$13$JXu4g5E4MwR8jvNK41wp7..zMtI2.MF4g8i/euiHv1qtGTdVe0fl6','8IrxXwJp4sHBFeWW-gebp1f75T_nLCRx',NULL,'ZZMYiUW5FaDzY4eDo1p8f5p2eg8_yK-K',0,0,2,'2015-07-01 16:06:12','2015-07-02 14:56:52'),
-	(5,'companyadmin','Company','Admin','companyadmin@asoner.com','$2y$13$djseGQlCMk1rHXoRs3gnPubMQ6N9Tl0iZMf3uMXyGyoRKlLtDg2gy','ifh78o0xLJ8zfNapw_HURpVoTqnSmL5u',NULL,'zZFa5FaHsoMVrUYyb_DqZ1QevRdObzFR',0,0,1,'2015-07-01 16:07:58','2015-07-02 11:07:08');
+	(4,'user','Normal','User','companyuser@asoner.com','$2y$13$JXu4g5E4MwR8jvNK41wp7..zMtI2.MF4g8i/euiHv1qtGTdVe0fl6','8IrxXwJp4sHBFeWW-gebp1f75T_nLCRx',NULL,'ZZMYiUW5FaDzY4eDo1p8f5p2eg8_yK-K',0,0,2,'2015-07-01 16:06:12','2015-07-02 14:56:52');
 
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
