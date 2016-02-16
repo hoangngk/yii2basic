@@ -24,7 +24,7 @@ AppAsset::register($this);
 
 <?php $this->beginBody() ?>
     <div class="wrap">
-        <?php echo \Yii::$app->view->renderFile('@app/views/layouts/menu_company_admin.php', ['noti_new'=> '']); ?>
+        <?php echo \Yii::$app->view->renderFile('@app/views/layouts/menu.php'); ?>
         <div class="container">
             <?= Breadcrumbs::widget([
                 'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
